@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Andrej Trendov - Full-stack developer & designer building digital products that drive business results">
+    <meta name="author" content="Andrej Trendov">
+    <title>Andrej Trendov | Full-Stack Developer & Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-brand">
+                <div class="brand-name">Andrej Trendov</div>
+                <div class="brand-info" data-i18n="brand_info">17 years old</div>
+                <div class="brand-location" data-i18n="brand_location">North Macedonia</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#hero" class="nav-item active" data-section="hero">
+                    <span class="nav-number">01</span>
+                    <span class="nav-label" data-i18n="nav_home">Home</span>
+                </a>
+                <a href="#about" class="nav-item" data-section="about">
+                    <span class="nav-number">02</span>
+                    <span class="nav-label" data-i18n="nav_about">About</span>
+                </a>
+                <a href="#why-hire-me" class="nav-item" data-section="why-hire-me">
+                    <span class="nav-number">03</span>
+                    <span class="nav-label" data-i18n="nav_why_me">Why Me</span>
+                </a>
+                <a href="#achievements" class="nav-item" data-section="achievements">
+                    <span class="nav-number">04</span>
+                    <span class="nav-label" data-i18n="nav_awards">Awards</span>
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <span class="nav-number">05</span>
+                    <span class="nav-label" data-i18n="nav_work">Work</span>
+                </a>
+                <a href="#skills" class="nav-item" data-section="skills">
+                    <span class="nav-number">06</span>
+                    <span class="nav-label" data-i18n="nav_skills">Skills</span>
+                </a>
+                <a href="#testimonials" class="nav-item" data-section="testimonials">
+                    <span class="nav-number">07</span>
+                    <span class="nav-label" data-i18n="nav_reviews">Reviews</span>
+                </a>
+                <a href="#contact" class="nav-item" data-section="contact">
+                    <span class="nav-number">08</span>
+                    <span class="nav-label" data-i18n="nav_contact">Contact</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="lang-toggle" id="lang-toggle" title="Switch Language">
+                    <span class="lang-current">EN</span>
+                    <span class="lang-separator">/</span>
+                    <span class="lang-other">MK</span>
+                </button>
+                <div class="copyright">© 2025</div>
+            </div>
+        </div>
+        <div class="sidebar-progress" id="sidebar-progress"></div>
+    </aside>
+
+    <!-- Stars Background -->
+    <div class="stars-background" id="stars-background"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span data-i18n="status_available">Available for new projects</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="title-line">Andrej</span>
+                        <span class="title-line title-accent">Trendov</span>
+                    </h1>
+                    
+                    <div class="hero-subtitle">
+                        <p class="subtitle-main" data-i18n="hero_subtitle">Full-stack developer & designer building <em>digital products</em> that drive business results.</p>
+                        <p class="subtitle-secondary" data-i18n="hero_subtitle2">Transforming complex ideas into elegant, scalable solutions.</p>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary" data-i18n="btn_start_project">Start a project →</a>
+                        <a href="#projects" class="btn btn-secondary" data-i18n="btn_view_work">View work</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">20+</div>
+                            <div class="stat-label" data-i18n="stat_projects">Projects</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-value">7+</div>
+                            <div class="stat-label" data-i18n="stat_years">Years Coding</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label" data-i18n="stat_awards">Awards Won</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bg-gradient" id="hero-gradient"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <h2 class="section-title" data-i18n="section_about">About</h2>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-intro" data-i18n="about_intro">I'm a passionate full-stack developer and electronics enthusiast who started coding and building websites at the age of 10.</p>
+                        <p data-i18n="about_p1">With 7+ years of self-taught experience and 3 months of professional work, I've developed a deep understanding of both software and hardware. I specialize in web development with Python, Flask, and FastAPI, while also working extensively with embedded systems like Arduino and ESP32.</p>
+                        <p data-i18n="about_p2">My journey has been marked by achievements including winning a national hackathon, earning a full scholarship to FINKI in North Macedonia, and taking first place in the national Kengur competition for logical mathematical thinking.</p>
+                        <p data-i18n="about_p3">Beyond web development, I'm passionate about electronics, digital systems, and IoT projects that bridge the gap between software and the physical world.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="{{ url_for('static', filename='img/profilna.png') }}" alt="Andrej Trendov" class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Hire Me Section -->
+        <section id="why-hire-me" class="section why-hire-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <h2 class="section-title" data-i18n="section_why_hire">Why Hire Me</h2>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚀</div>
+                        <h3 class="benefit-title" data-i18n="benefit_fast_title">Fast Delivery</h3>
+                        <p class="benefit-text" data-i18n="benefit_fast_text">I deliver high-quality work on time, every time. No excuses, just results.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💡</div>
+                        <h3 class="benefit-title" data-i18n="benefit_problem_title">Problem Solver</h3>
+                        <p class="benefit-text" data-i18n="benefit_problem_text">I don't just write code—I solve business problems with technical solutions.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎨</div>
+                        <h3 class="benefit-title" data-i18n="benefit_design_title">Design + Code</h3>
+                        <p class="benefit-text" data-i18n="benefit_design_text">Unique combination of design sensibility and technical expertise.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h3 class="benefit-title" data-i18n="benefit_results_title">Results Driven</h3>
+                        <p class="benefit-text" data-i18n="benefit_results_text">Every project is measured by its impact on your business goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section achievements-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <h2 class="section-title" data-i18n="section_achievements">Achievements & Awards</h2>
+                </div>
+                
+                <div class="achievements-grid">
+                    <div class="achievement-card gold">
+                        <div class="achievement-icon">🏆</div>
+                        <div class="achievement-place" data-i18n="place_1st">1st Place</div>
+                        <h3 class="achievement-title" data-i18n="ach_hackathon_title">National Hackathon Winner</h3>
+                        <p class="achievement-description" data-i18n="ach_hackathon_desc">Won first place at a national hackathon competition, developing SafeSpace - a Chrome extension for safer browsing.</p>
+                    </div>
+                    
+                    <div class="achievement-card gold">
+                        <div class="achievement-icon">🎓</div>
+                        <div class="achievement-place" data-i18n="place_scholarship">Full Scholarship</div>
+                        <h3 class="achievement-title" data-i18n="ach_finki_title">FINKI Scholarship</h3>
+                        <p class="achievement-description" data-i18n="ach_finki_desc">Awarded a full scholarship to study at the Faculty of Computer Science and Engineering (FINKI) in North Macedonia.</p>
+                    </div>
+                    
+                    <div class="achievement-card gold">
+                        <div class="achievement-icon">🧠</div>
+                        <div class="achievement-place" data-i18n="place_1st">1st Place</div>
+                        <h3 class="achievement-title" data-i18n="ach_kengur_title">Kengur Competition</h3>
+                        <p class="achievement-description" data-i18n="ach_kengur_desc">Won first place in the national Kengur competition for logical and mathematical thinking.</p>
+                    </div>
+                    
+                    <div class="achievement-card silver">
+                        <div class="achievement-icon">🥈</div>
+                        <div class="achievement-place" data-i18n="place_2nd">2nd Place</div>
+                        <h3 class="achievement-title" data-i18n="ach_massum_title">MASSUM Competition</h3>
+                        <p class="achievement-description" data-i18n="ach_massum_desc">Achieved second place with my team in MASSUM, a prestigious competition representing high schools across the country.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">📜</div>
+                        <div class="achievement-place" data-i18n="place_certificate">Certificate</div>
+                        <h3 class="achievement-title" data-i18n="ach_cert_title">Hackathon Recognition</h3>
+                        <p class="achievement-description" data-i18n="ach_cert_desc">Received an official certificate of achievement from another hackathon competition for innovative problem-solving.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">💼</div>
+                        <div class="achievement-place" data-i18n="place_professional">Professional</div>
+                        <h3 class="achievement-title" data-i18n="ach_exp_title">3 Months Industry Experience</h3>
+                        <p class="achievement-description" data-i18n="ach_exp_desc">Started professional web development work, delivering real projects for clients including generacijacafe.mk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">05</div>
+                    <h2 class="section-title" data-i18n="section_projects">Featured Work</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card featured">
+                        <div class="project-image">
+                            <div class="image-placeholder">Generacija Cafe</div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Generacija Cafe</h3>
+                            <p class="project-description" data-i18n="proj_cafe_desc">Professional website built for a real business. A complete web solution showcasing the cafe's menu, atmosphere, and location. This project represents my first professional paid work.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag" data-i18n="tag_professional">Professional</span>
+                            </div>
+                            <a href="https://generacijacafe.mk" target="_blank" class="project-link" data-i18n="link_visit_site">Visit Live Site →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">SafeSpace</div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">SafeSpace</h3>
+                            <p class="project-description" data-i18n="proj_safespace_desc">National Hackathon Winning Project: Chrome extension and Flask backend for safer browsing with content moderation and focus mode. Features real-time keyword filtering, focus mode blocking, and analytics dashboard.</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">Chrome Extension</span>
+                            </div>
+                            <a href="https://github.com/soggy8/SafeSpace" target="_blank" class="project-link" data-i18n="link_github">View on GitHub →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder" data-i18n="proj_traffic_title">Traffic Control System</div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title" data-i18n="proj_traffic_title">Traffic Control System</h3>
+                            <p class="project-description" data-i18n="proj_traffic_desc">IoT project: ESP32-based traffic light control system with web interface. Combines embedded systems programming with modern web development for remote control and monitoring.</p>
+                            <div class="project-tags">
+                                <span class="tag">C++</span>
+                                <span class="tag">ESP32</span>
+                                <span class="tag">IoT</span>
+                                <span class="tag" data-i18n="tag_web_interface">Web Interface</span>
+                            </div>
+                            <a href="https://github.com/soggy8/esp32-Traffic-Light-Web" target="_blank" class="project-link" data-i18n="link_github">View on GitHub →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">Voxel Engine</div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Voxel Engine</h3>
+                            <p class="project-description" data-i18n="proj_voxel_desc">3D voxel-based rendering engine built from scratch. Demonstrates advanced graphics programming, 3D mathematics, and performance optimization techniques.</p>
+                            <div class="project-tags">
+                                <span class="tag" data-i18n="tag_3d_graphics">3D Graphics</span>
+                                <span class="tag">Voxel</span>
+                                <span class="tag">C++</span>
+                                <span class="tag">OpenGL</span>
+                            </div>
+                            <a href="https://github.com/soggy8/VoxelEngine1" target="_blank" class="project-link" data-i18n="link_github">View on GitHub →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder" data-i18n="proj_quiz_title">AI Quiz Platform</div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title" data-i18n="proj_quiz_title">AI Quiz Platform</h3>
+                            <p class="project-description" data-i18n="proj_quiz_desc">AI-powered quiz application that generates intelligent questions and provides interactive learning experiences. Integrates modern AI APIs for dynamic content generation.</p>
+                            <div class="project-tags">
+                                <span class="tag">AI</span>
+                                <span class="tag">Quiz</span>
+                                <span class="tag" data-i18n="tag_web_app">Web App</span>
+                            </div>
+                            <a href="https://github.com/soggy8/skoloKvizAI" target="_blank" class="project-link" data-i18n="link_github">View on GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">06</div>
+                    <h2 class="section-title" data-i18n="section_skills">Skills & Technologies</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title">Frontend</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">HTML</span>
+                            <span class="skill-item">CSS</span>
+                            <span class="skill-item">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">Backend</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">Flask</span>
+                            <span class="skill-item">FastAPI</span>
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">C++</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title" data-i18n="skill_embedded">Embedded & Hardware</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Arduino</span>
+                            <span class="skill-item">ESP32</span>
+                            <span class="skill-item" data-i18n="skill_electronics">Electronics</span>
+                            <span class="skill-item" data-i18n="skill_digital">Digital Circuits</span>
+                            <span class="skill-item">IoT</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title" data-i18n="skill_design">Design & Fabrication</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">FreeCAD</span>
+                            <span class="skill-item" data-i18n="skill_cad">CAD Modeling</span>
+                            <span class="skill-item" data-i18n="skill_3dprint">3D Printing</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title" data-i18n="skill_tools">Tools & DevOps</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Git</span>
+                            <span class="skill-item">GitHub</span>
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-item">Linux</span>
+                            <span class="skill-item">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">07</div>
+                    <h2 class="section-title" data-i18n="section_testimonials">What People Say</h2>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text" data-i18n="testimonial_1">"Andrej delivered exactly what we needed, on time and within budget. His attention to detail and communication throughout the project was exceptional."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="author-role">CEO, TechStart Inc.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text" data-i18n="testimonial_2">"Working with Andrej was a pleasure. He understood our vision and brought it to life with clean, maintainable code and beautiful design."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Michael Chen</div>
+                            <div class="author-role">Founder, DesignCo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text" data-i18n="testimonial_3">"The best developer we've worked with. Andrej's technical expertise and problem-solving skills helped us scale our platform successfully."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Emily Rodriguez</div>
+                            <div class="author-role">CTO, GrowthApp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-number">08</div>
+                    <h2 class="section-title" data-i18n="section_contact">Get In Touch</h2>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p class="contact-intro" data-i18n="contact_intro">Have a project in mind? Let's discuss how we can bring your ideas to life.</p>
+                        <div class="contact-details">
+                            <a href="mailto:atrendov1@gmail.com" class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                <span>atrendov1@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/soggy8" class="contact-item" target="_blank">
+                                <span class="contact-icon">🔗</span>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/andrejtrendov" class="contact-item" target="_blank">
+                                <span class="contact-icon">💼</span>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="form_message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-i18n="form_submit">Send Message →</button>
+                        <div class="form-message" id="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/translations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
