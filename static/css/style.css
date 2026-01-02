@@ -33,6 +33,26 @@ body {
     letter-spacing: -0.01em;
     font-size: 1.05rem;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Improve touch scrolling */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Optimize scrolling on mobile */
+@media (max-width: 768px) {
+    html {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 /* Stars Background */
@@ -45,6 +65,7 @@ body {
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    will-change: transform;
 }
 
 .star {
@@ -116,6 +137,8 @@ body {
     border-right: 1px solid var(--border);
     z-index: 1000;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
 }
 
 .sidebar-content {
@@ -174,10 +197,12 @@ body {
     padding: 0.75rem 0;
     text-decoration: none;
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    transition: color 0.15s ease, transform 0.15s ease;
     position: relative;
     font-size: 0.95rem;
     font-weight: 400;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .nav-item::before {
@@ -547,7 +572,7 @@ body {
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 400;
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
     border: 1px solid var(--border);
     cursor: pointer;
     display: inline-block;
@@ -557,6 +582,9 @@ body {
     position: relative;
     background-color: transparent;
     color: var(--text-primary);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .btn::before {
@@ -685,13 +713,33 @@ body {
     max-width: 100%;
     object-fit: cover;
     border: 2px solid var(--border);
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
     display: block;
+    will-change: transform;
 }
 
 .profile-image:hover {
     border-color: var(--text-primary);
     transform: scale(1.01);
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+    .profile-image:hover {
+        transform: none;
+    }
+    
+    .benefit-card:hover {
+        transform: none;
+    }
+    
+    .nav-item:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
 }
 
 .image-placeholder {
@@ -726,9 +774,10 @@ body {
     padding: 2rem;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border);
-    transition: all 0.2s ease;
+    transition: border-color 0.15s ease, transform 0.15s ease;
     position: relative;
     font-family: 'JetBrains Mono', monospace;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .benefit-card::before {
@@ -1234,6 +1283,10 @@ body {
     height: 48px;
     justify-content: center;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .hamburger-line {
@@ -1241,7 +1294,8 @@ body {
     width: 24px;
     height: 2px;
     background-color: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+    will-change: transform, opacity;
 }
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
@@ -1267,7 +1321,10 @@ body {
     background: rgba(0, 0, 0, 0.8);
     z-index: 999;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
+    will-change: opacity;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }
 
 .mobile-overlay.active {
@@ -1317,14 +1374,21 @@ body {
     /* Sidebar - Hidden by default on mobile */
     .sidebar {
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         width: 280px;
         min-width: 280px;
         max-width: 280px;
+        will-change: transform;
     }
     
     .sidebar.active {
         transform: translateX(0);
+    }
+    
+    /* Sidebar nav items - better touch targets */
+    .nav-item {
+        min-height: 48px;
+        padding: 1rem 0;
     }
     
     /* Main content - Full width on mobile */
@@ -1400,6 +1464,10 @@ body {
         width: 100%;
         text-align: center;
         padding: 1rem 1.5rem;
+        min-height: 48px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .hero-stats {
@@ -1564,7 +1632,10 @@ body {
     
     .contact-item {
         font-size: 0.95rem;
-        padding: 0.5rem 0;
+        padding: 0.75rem 0;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
     }
     
     .form-group label {
@@ -1573,8 +1644,16 @@ body {
     
     .form-group input,
     .form-group textarea {
-        font-size: 1rem;
-        padding: 0.875rem;
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 1rem;
+        min-height: 44px; /* Minimum touch target size */
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+    
+    /* Prevent double-tap zoom */
+    button, a, input, textarea, select {
+        touch-action: manipulation;
     }
     
     /* Language toggle in sidebar */
@@ -1610,5 +1689,34 @@ body {
     .achievement-card,
     .testimonial-card {
         padding: 1.25rem;
+    }
+    
+    .mobile-menu-toggle {
+        top: 0.75rem;
+        left: 0.75rem;
+        width: 44px;
+        height: 44px;
+        padding: 0.625rem;
+    }
+}
+
+/* Performance optimizations */
+@media (max-width: 768px) {
+    /* Disable hover effects on touch devices */
+    .benefit-card:hover,
+    .achievement-card:hover,
+    .project-card:hover,
+    .testimonial-card:hover,
+    .skill-item:hover {
+        transform: none;
+        border-color: var(--border);
+    }
+    
+    /* Reduce transition times for better responsiveness */
+    .benefit-card,
+    .achievement-card,
+    .project-card,
+    .testimonial-card {
+        transition: border-color 0.1s ease;
     }
 }

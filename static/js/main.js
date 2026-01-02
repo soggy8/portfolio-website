@@ -3,7 +3,8 @@ function createStars() {
     const starsContainer = document.getElementById('stars-background');
     if (!starsContainer) return;
     
-    const numStars = 150;
+    // Reduce number of stars on mobile for better performance
+    const numStars = window.innerWidth <= 768 ? 75 : 150;
     const starSizes = ['star-small', 'star-medium', 'star-large'];
     
     for (let i = 0; i < numStars; i++) {
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.section');
     
-    // Handle navigation clicks
+    // Handle navigation clicks (optimized for mobile)
     navItems.forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -125,17 +126,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.getElementById(targetId);
             
             if (targetSection) {
+                // Use instant scroll on mobile, smooth on desktop
+                const isMobile = window.innerWidth <= 768;
                 targetSection.scrollIntoView({
-                    behavior: 'smooth',
+                    behavior: isMobile ? 'auto' : 'smooth',
                     block: 'start'
                 });
+                
+                // Small delay for mobile to ensure menu closes
+                if (isMobile) {
+                    setTimeout(() => {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
             }
-        });
+        }, { passive: false });
     });
     
-    // Update active navigation on scroll
-    function updateActiveNav() {
-        const scrollPosition = window.scrollY + 200;
+    // Throttle function for scroll events
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+    
+    // Update active navigation on scroll (throttled for performance)
+    const updateActiveNav = throttle(function() {
+        const scrollPosition = window.scrollY + (window.innerWidth <= 768 ? 100 : 200);
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -158,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateProgressBar(sectionId);
             }
         });
-    }
+    }, 100);
     
     // Update sidebar progress bar
     function updateProgressBar(activeSectionId) {
@@ -181,45 +208,78 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Mouse gradient effect for hero section
+    // Mouse gradient effect for hero section (desktop only)
     const heroGradient = document.getElementById('hero-gradient');
-    if (heroGradient) {
+    if (heroGradient && window.innerWidth > 768) {
+        let ticking = false;
         document.addEventListener('mousemove', function(e) {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            heroGradient.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255, 255, 255, 0.1), transparent 50%)`;
-        });
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    heroGradient.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255, 255, 255, 0.1), transparent 50%)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     }
     
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+    // Intersection Observer for fade-in animations (disabled on mobile for performance)
+    if (window.innerWidth > 768) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections for fade-in effect
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            observer.observe(section);
         });
-    }, observerOptions);
-    
-    // Observe all sections for fade-in effect
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
+    } else {
+        // On mobile, show everything immediately
+        sections.forEach(section => {
+            section.style.opacity = '1';
+            section.style.transform = 'none';
+        });
+    }
     
     // Initial scroll check
     updateActiveNav();
     
-    // Update on scroll
+    // Update on scroll (with passive listener for better performance)
     window.addEventListener('scroll', updateActiveNav, { passive: true });
+    
+    // Handle resize to adjust stars count if needed
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            const starsContainer = document.getElementById('stars-background');
+            if (starsContainer) {
+                const currentStars = starsContainer.children.length;
+                const shouldHaveStars = window.innerWidth <= 768 ? 75 : 150;
+                
+                // Only recreate if count needs to change significantly
+                if (Math.abs(currentStars - shouldHaveStars) > 20) {
+                    starsContainer.innerHTML = '';
+                    createStars();
+                }
+            }
+        }, 250);
+    }, { passive: true });
     
     // Contact form handling
     const contactForm = document.getElementById('contact-form');
